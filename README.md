@@ -95,3 +95,7 @@ CSRF_TRUSTED_ORIGINS=https://minidashboard-test.joween.dev
 CORS_ALLOWED_ORIGIN=https://minidashboard-test.joween.dev
 VITE_API_URL=/api/dashboard/
 ```
+
+The compose file automatically appends `localhost`, `127.0.0.1`, and `backend`
+to `DJANGO_ALLOWED_HOSTS` for internal container health checks and service
+traffic.

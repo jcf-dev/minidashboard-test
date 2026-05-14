@@ -22,7 +22,7 @@ services:
     environment:
       DJANGO_DEBUG: ${DJANGO_DEBUG:?DJANGO_DEBUG is required in .env}
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?DJANGO_SECRET_KEY is required in .env}
-      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:?DJANGO_ALLOWED_HOSTS is required in .env}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:?DJANGO_ALLOWED_HOSTS is required in .env},localhost,127.0.0.1,backend
       CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS:-}
       DASHBOARD_API_KEY: ${DASHBOARD_API_KEY:?DASHBOARD_API_KEY is required in .env}
       CORS_ALLOWED_ORIGIN: ${CORS_ALLOWED_ORIGIN:?CORS_ALLOWED_ORIGIN is required in .env}
@@ -48,6 +48,7 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
+      start_period: 120s
 
   frontend:
     build:

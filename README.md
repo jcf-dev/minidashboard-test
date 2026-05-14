@@ -96,6 +96,11 @@ CORS_ALLOWED_ORIGIN=https://minidashboard-test.joween.dev
 VITE_API_URL=/api/dashboard/
 ```
 
+Access the deployed system at:
+
+```text
+https://minidashboard-test.joween.dev
+```
+
 The compose file automatically appends `localhost`, `127.0.0.1`, and `backend`
-to `DJANGO_ALLOWED_HOSTS` for internal container health checks and service
-traffic.
+to `DJANGO_ALLOWED_HOSTS` for internal container traffic.

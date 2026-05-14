@@ -2,6 +2,7 @@ import json
 from datetime import date
 from decimal import Decimal
 
+from django.core.management import call_command
 from django.test import Client as HttpClient
 from django.test import TestCase, override_settings
 
@@ -76,3 +77,28 @@ class DashboardApiTests(TestCase):
         target = MonthlyTarget.objects.get(client=self.client_record, month=self.month)
         self.assertEqual(target.goal, Decimal("14500"))
 
+
+class SeedDemoDataTests(TestCase):
+    def test_seed_creates_client_expected_by_frontend(self):
+        call_command("seed_demo_data", verbosity=0)
+
+        self.assertTrue(
+            Client.objects.filter(
+                id=1,
+                name="Acme Supply Co.",
+                email="ops@acme.example",
+            ).exists()
+        )
+        self.assertTrue(
+            MonthlyTarget.objects.filter(
+                client_id=1,
+                month=date.today().replace(day=1),
+            ).exists()
+        )
+
+    def test_seed_handles_existing_demo_client_with_different_id(self):
+        Client.objects.create(id=10, name="Old Acme", email="ops@acme.example")
+
+        call_command("seed_demo_data", verbosity=0)
+
+        self.assertTrue(Client.objects.filter(id=1, email="ops@acme.example").exists())

@@ -63,7 +63,8 @@ The compose stack uses Postgres, runs Django migrations on backend startup, serv
 http://127.0.0.1:3000
 ```
 
-Set `SEED_DEMO_DATA=1` for the first container startup if you want demo clients and sales in Postgres.
+Demo clients and sales are seeded by default in Docker Compose so `VITE_CLIENT_ID=1`
+has data immediately. Set `SEED_DEMO_DATA=0` if you want to disable demo seeding.
 
 ## Coolify
 
